@@ -31,7 +31,7 @@
 
         /* === RESET === */
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
+        html { }
         body {
             font-family: var(--sans);
             background: var(--fondo);
@@ -933,6 +933,20 @@
         const navLinks   = document.getElementById('nav-links');
         menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
+
+        // Navegación sin # en la URL
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', window.location.pathname);
+                }
+            });
+        });
 
         // Navbar scroll
         window.addEventListener('scroll', () => {
