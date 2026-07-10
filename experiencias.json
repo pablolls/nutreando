@@ -1,7 +1,7 @@
 [
   {
     "nombre": "Laura M.",
-    "fecha": "Marzo 2025",
+    "fecha": "Marzo 2026",
     "inicial": "L",
     "variante": "",
     "estrellas": 5,
@@ -9,7 +9,7 @@
   },
   {
     "nombre": "Sara G.",
-    "fecha": "Enero 2025",
+    "fecha": "Enero 2026",
     "inicial": "S",
     "variante": "v2",
     "estrellas": 5,
@@ -17,7 +17,7 @@
   },
   {
     "nombre": "Ana P.",
-    "fecha": "Noviembre 2024",
+    "fecha": "Noviembre 2025",
     "inicial": "A",
     "variante": "v3",
     "estrellas": 5,
@@ -25,7 +25,7 @@
   },
   {
     "nombre": "Marta R.",
-    "fecha": "Febrero 2025",
+    "fecha": "Febrero 2026",
     "inicial": "M",
     "variante": "",
     "estrellas": 5,
@@ -33,7 +33,7 @@
   },
   {
     "nombre": "Claudia V.",
-    "fecha": "Diciembre 2024",
+    "fecha": "Diciembre 2025",
     "inicial": "C",
     "variante": "v2",
     "estrellas": 5,
@@ -41,27 +41,11 @@
   },
   {
     "nombre": "Irene F.",
-    "fecha": "Octubre 2024",
+    "fecha": "Octubre 2025",
     "inicial": "I",
     "variante": "v3",
     "estrellas": 5,
     "texto": "Pensé que no iba a poder mejorar mi relación con la comida después de años con TCA. Carlota me acompañó con mucha paciencia, respeto y sin ningún tipo de juicio. Estoy muy agradecida."
-  },
-  {
-    "nombre": "Mariano",
-    "fecha": "Febrero 2026",
-    "inicial": "M",
-    "variante": "v3",
-    "estrellas": 3,
-    "texto": "Todo genial."
-  },
-  {
-    "nombre": "Pablo",
-    "fecha": "Marzo 2026",
-    "inicial": "P",
-    "variante": "v3",
-    "estrellas": 3,
-    "texto": "Peeerfct."
   }
 ]
 
