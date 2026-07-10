@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutreando | Carlota Cabrero — Dietista y Nutricionista</title>
+    <link rel="icon" type="image/png" href="LOGO EN LILA DIBUJO.png">
+    <link rel="apple-touch-icon" href="LOGO EN LILA DIBUJO.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIABLES === */
+        :root {
+            --verde:     #7FEF7F;
+            --verde-osc: #5BD65B;
+            --lila:      #DE9EDF;
+            --lila-osc:  #C97DCA;
+            --negro:     #141416;
+            --texto:     #2C2C30;
+            --suave:     #6B6B72;
+            --fondo:     #F9F7F5;
+            --blanco:    #FFFFFF;
+            --borde:     rgba(0,0,0,0.07);
+            --serif:     'Playfair Display', Georgia, serif;
+            --sans:      'Poppins', sans-serif;
+            --radio:     16px;
+            --s1:        0 4px 24px rgba(0,0,0,0.06);
+            --s2:        0 16px 48px rgba(0,0,0,0.11);
+            --ease:      all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+
+        /* === RESET === */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            font-family: var(--sans);
+            background: var(--fondo);
+            color: var(--texto);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+        h1,h2,h3,h4 { font-family:var(--serif); line-height:1.15; font-weight:700; }
+        a { text-decoration:none; color:inherit; }
+        img { display:block; max-width:100%; }
+
+        /* === UTILIDADES === */
+        .reveal {
+            opacity:0;
+            transform:translateY(28px);
+            transition:opacity 0.85s ease, transform 0.85s ease;
+        }
+        .reveal.active { opacity:1; transform:none; }
+
+        .section-label {
+            display:inline-flex; align-items:center; gap:0.7rem;
+            font-family:var(--sans); font-size:0.7rem; font-weight:600;
+            letter-spacing:0.2em; text-transform:uppercase;
+            color:var(--suave); margin-bottom:1.1rem;
+        }
+        .section-label::before, .section-label::after {
+            content:''; width:26px; height:1px;
+            background:currentColor; opacity:0.35;
+        }
+
+        /* === NAVEGACIÓN === */
+        nav {
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            height:72px; display:flex; align-items:center; justify-content:space-between;
+            padding:0 5%;
+            background:rgba(249,247,245,0.88);
+            backdrop-filter:saturate(180%) blur(20px);
+            -webkit-backdrop-filter:saturate(180%) blur(20px);
+            border-bottom:1px solid var(--borde);
+            transition:var(--ease);
+        }
+        nav.scrolled {
+            height:64px; background:rgba(255,255,255,0.97);
+            box-shadow:0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo-nav a { position:relative; display:inline-block; height:40px; }
+        .logo-nav img { height:40px; transition:opacity .35s ease; display:block; }
+        .logo-nav .logo-lila  { opacity:1; }
+        .logo-nav .logo-verde { position:absolute; top:0; left:0; opacity:0; }
+        .logo-nav a:hover .logo-lila  { opacity:0; }
+        .logo-nav a:hover .logo-verde { opacity:1; }
+
+        .nav-links {
+            list-style:none; display:flex; align-items:center; gap:3rem;
+        }
+        .nav-links a {
+            font-size:0.82rem; font-weight:500; letter-spacing:0.05em;
+            color:var(--texto); position:relative; padding-bottom:3px;
+            transition:color .3s;
+        }
+        .nav-links a::after {
+            content:''; position:absolute; bottom:0; left:0;
+            width:0; height:1.5px; background:var(--lila-osc);
+            transition:width .35s ease;
+        }
+        .nav-links a:hover { color:var(--lila-osc); }
+        .nav-links a:hover::after { width:100%; }
+        .nav-cta {
+            background:var(--negro) !important; color:var(--blanco) !important;
+            padding:0.55rem 1.4rem !important; border-radius:50px;
+            font-size:0.8rem !important; font-weight:600 !important;
+            letter-spacing:0.04em; transition:var(--ease) !important;
+        }
+        .nav-cta::after { display:none !important; }
+        .nav-cta:hover { background:var(--lila-osc) !important; transform:translateY(-1px); }
+
+        .menu-toggle {
+            display:none; background:none; border:none;
+            cursor:pointer; padding:4px; color:var(--texto);
+        }
+
+        /* === HERO === */
+        .hero {
+            margin-top: 72px;
+            min-height: calc(100vh - 72px);
+            display: grid;
+            grid-template-columns: 58% 42%;
+            overflow: hidden;
+        }
+
+        /* Panel izquierdo — texto */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 2.5rem 7rem 8%;
+            background: var(--fondo);
+        }
+        .hero-accent-line {
+            width: 1.5px; height: 52px;
+            background: linear-gradient(to bottom, var(--lila-osc), transparent);
+            margin-bottom: 2rem; opacity: 0.5;
+        }
+        .hero-eyebrow-text {
+            font-family: var(--sans); font-size: 0.67rem; font-weight: 600;
+            letter-spacing: 0.26em; text-transform: uppercase;
+            color: var(--suave); margin-bottom: 2rem;
+        }
+        .hero-left h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 4vw, 4.2rem);
+            line-height: 1.1; letter-spacing: -0.02em;
+            color: var(--negro); margin-bottom: 2.2rem;
+        }
+        .hero-left h1 em { font-style: italic; color: var(--lila-osc); }
+        .hero-separator {
+            width: 44px; height: 1.5px;
+            background: var(--verde-osc); margin-bottom: 2rem;
+        }
+        .hero-left p {
+            font-size: 0.97rem; color: var(--suave);
+            max-width: 420px; line-height: 1.95;
+            font-weight: 300; margin-bottom: 3rem;
+        }
+        .hero-actions { display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap; }
+
+        .btn-primary {
+            display:inline-flex; align-items:center; gap:0.55rem;
+            background:var(--negro); color:var(--blanco);
+            padding:0.88rem 2.1rem; border-radius:50px;
+            font-size:0.87rem; font-weight:600; letter-spacing:0.03em;
+            border:2px solid var(--negro); transition:var(--ease);
+        }
+        .btn-primary:hover { background:transparent; color:var(--negro); }
+        .btn-primary svg { transition:transform .3s; }
+        .btn-primary:hover svg { transform:translateX(4px); }
+
+        .btn-ghost {
+            display:inline-flex; align-items:center; gap:0.4rem;
+            color:var(--suave); font-size:0.85rem; font-weight:500;
+            border-bottom:1px solid var(--borde); padding-bottom:2px;
+            transition:var(--ease);
+        }
+        .btn-ghost:hover { color:var(--lila-osc); border-bottom-color:var(--lila-osc); }
+
+        /* Panel derecho — fotografía minimalista */
+        .hero-right {
+            display: flex; align-items: center; justify-content: center;
+            padding: 5rem 3.5rem 5rem 2.5rem;
+            background: var(--blanco);
+            border-left: 1px solid var(--borde);
+        }
+        .hero-photo-wrap { width: 100%; max-width: 280px; }
+        .hero-right img {
+            width: 100%; aspect-ratio: 3/4;
+            object-fit: cover; object-position: center 10%;
+            display: block; border-radius: 4px;
+            box-shadow: 0 20px 48px rgba(0,0,0,0.09), 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .hero-photo-caption {
+            margin-top: 1.1rem; display: flex;
+            justify-content: space-between; align-items: flex-start;
+        }
+        .hero-photo-caption .name-block strong {
+            display: block; font-family: var(--serif);
+            font-size: 1rem; color: var(--negro); margin-bottom: 0.15rem;
+        }
+        .hero-photo-caption .name-block span {
+            font-size: 0.63rem; font-weight: 500;
+            letter-spacing: 0.14em; text-transform: uppercase; color: var(--suave);
+        }
+        .hero-photo-caption .col-badge {
+            font-size: 0.62rem; color: var(--suave); opacity: 0.55;
+            letter-spacing: 0.08em; text-align: right; line-height: 1.7;
+        }
+
+        /* === SERVICIOS === */
+        .servicios { padding:8rem 5%; background:var(--blanco); overflow:hidden; }
+        .servicios-header { max-width:540px; margin:0 auto 5rem; text-align:center; }
+        .servicios-header h2 {
+            font-size:clamp(2rem,4vw,2.8rem); color:var(--negro); margin-bottom:1rem;
+        }
+        .servicios-header p { color:var(--suave); font-size:0.96rem; font-weight:300; }
+
+        .scroll-container-wrapper { position:relative; max-width:1400px; margin:0 auto; }
+        .horizontal-scroll {
+            display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+            gap:2rem; padding:1rem 0.5rem 3rem;
+            -webkit-overflow-scrolling:touch; scrollbar-width:none;
+        }
+        .horizontal-scroll::-webkit-scrollbar { display:none; }
+
+        .card-servicio {
+            flex:0 0 310px; scroll-snap-align:start;
+            background:var(--fondo); border:1px solid var(--borde);
+            padding:2.5rem 2rem; border-radius:var(--radio);
+            position:relative; overflow:hidden; transition:var(--ease);
+            min-height:270px; display:flex; flex-direction:column; justify-content:flex-end;
+        }
+        .card-servicio::after {
+            content:''; position:absolute; bottom:0; left:0;
+            width:0; height:3px;
+            background:linear-gradient(90deg,var(--verde),var(--lila));
+            transition:width .5s ease;
+        }
+        .card-servicio:hover {
+            background:var(--blanco); border-color:rgba(222,158,223,0.28);
+            transform:translateY(-6px); box-shadow:var(--s2);
+        }
+        .card-servicio:hover::after { width:100%; }
+        .service-num {
+            position:absolute; top:1.4rem; right:1.4rem;
+            font-family:var(--serif); font-size:3.2rem; font-weight:700;
+            color:rgba(0,0,0,0.04); line-height:1; transition:color .4s;
+        }
+        .card-servicio:hover .service-num { color:rgba(222,158,223,0.12); }
+        .card-servicio p {
+            font-weight:500; font-size:0.96rem; color:var(--texto);
+            line-height:1.65; position:relative; z-index:2;
+        }
+
+        /* Icono en tarjeta */
+        .card-icon {
+            position:absolute; top:1.6rem; left:1.6rem;
+            width:42px; height:42px; border-radius:10px;
+            display:flex; align-items:center; justify-content:center;
+            background:rgba(201,125,202,0.1);
+            border:1px solid rgba(201,125,202,0.18);
+            color:var(--lila-osc);
+            transition:var(--ease);
+        }
+        .card-icon.verde {
+            background:rgba(91,214,91,0.1);
+            border-color:rgba(91,214,91,0.22);
+            color:var(--verde-osc);
+        }
+        .card-servicio:hover .card-icon        { background:rgba(201,125,202,0.2); transform:scale(1.08); }
+        .card-servicio:hover .card-icon.verde  { background:rgba(91,214,91,0.18); transform:scale(1.08); }
+
+        /* === BOTÓN VER MÁS === */
+        .btn-ver-mas {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            margin-top:1.6rem; padding:0.52rem 1.1rem 0.52rem 0.9rem;
+            font-size:0.72rem; font-weight:600;
+            letter-spacing:0.1em; text-transform:uppercase;
+            color:var(--lila-osc);
+            background:rgba(201,125,202,0.08);
+            border:1px solid rgba(201,125,202,0.22);
+            border-radius:50px; cursor:pointer;
+            font-family:var(--sans); transition:var(--ease);
+            position:relative; z-index:2;
+        }
+        .btn-ver-mas:hover {
+            background:var(--lila-osc); color:var(--blanco);
+            border-color:var(--lila-osc); gap:0.75rem;
+        }
+        .btn-ver-mas svg { transition:transform .3s ease; flex-shrink:0; }
+        .btn-ver-mas:hover svg { transform:translateX(3px); }
+
+        /* === MODAL OVERLAY === */
+        .modal-overlay {
+            position:fixed; inset:0; z-index:2000;
+            background:rgba(20,20,22,0.55);
+            backdrop-filter:blur(8px);
+            -webkit-backdrop-filter:blur(8px);
+            display:flex; align-items:center; justify-content:center;
+            padding:1.5rem;
+            opacity:0; pointer-events:none;
+            transition:opacity .35s ease;
+        }
+        .modal-overlay.open { opacity:1; pointer-events:all; }
+
+        .modal-card {
+            background:var(--blanco); border-radius:20px;
+            max-width:560px; width:100%;
+            padding:3rem 2.8rem 2.5rem;
+            position:relative; box-shadow:0 24px 80px rgba(0,0,0,0.18);
+            transform:translateY(24px) scale(0.97);
+            transition:transform .38s cubic-bezier(0.25,0.46,0.45,0.94);
+            max-height:90vh; overflow-y:auto;
+        }
+        .modal-overlay.open .modal-card { transform:none; }
+
+        .modal-close {
+            position:absolute; top:1.3rem; right:1.3rem;
+            width:36px; height:36px; border-radius:50%;
+            border:1px solid var(--borde); background:var(--fondo);
+            cursor:pointer; display:flex; align-items:center; justify-content:center;
+            color:var(--suave); transition:var(--ease);
+        }
+        .modal-close:hover { background:var(--negro); border-color:var(--negro); color:var(--blanco); }
+
+        .modal-icon {
+            width:52px; height:52px; border-radius:14px;
+            display:flex; align-items:center; justify-content:center;
+            background:rgba(201,125,202,0.1);
+            border:1px solid rgba(201,125,202,0.18);
+            color:var(--lila-osc); margin-bottom:1.6rem;
+        }
+        .modal-icon.verde {
+            background:rgba(91,214,91,0.1);
+            border-color:rgba(91,214,91,0.22);
+            color:var(--verde-osc);
+        }
+        .modal-num {
+            font-family:var(--sans); font-size:0.72rem; font-weight:600;
+            letter-spacing:0.18em; text-transform:uppercase;
+            color:var(--suave); margin-bottom:0.6rem; display:block;
+        }
+        .modal-card h3 {
+            font-size:clamp(1.2rem,3vw,1.55rem); color:var(--negro);
+            margin-bottom:1.1rem; line-height:1.25;
+        }
+        .modal-divider {
+            width:40px; height:2px;
+            background:linear-gradient(90deg,var(--verde),var(--lila));
+            border-radius:2px; margin-bottom:1.4rem;
+        }
+        .modal-card p {
+            color:var(--suave); font-size:0.95rem; font-weight:300; line-height:1.85;
+        }
+
+        .scroll-btn {
+            position:absolute; top:calc(50% - 54px);
+            width:52px; height:52px; border-radius:50%;
+            background:var(--blanco); border:1px solid var(--borde);
+            color:var(--texto); cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            z-index:10; box-shadow:var(--s1); transition:var(--ease);
+        }
+        .scroll-btn:hover { background:var(--negro); border-color:var(--negro); color:var(--blanco); }
+        .prev-btn { left:-26px; }
+        .next-btn { right:-26px; }
+
+        /* === SOBRE MÍ === */
+        .sobre-mi-contacto {
+            padding:8rem 5%; background:var(--fondo); position:relative;
+        }
+        .sobre-mi-contacto::before {
+            content:''; position:absolute; top:0; left:5%; width:90%; height:1px;
+            background:var(--borde);
+        }
+        .bento-grid {
+            max-width:1100px; margin:0 auto;
+            display:grid; grid-template-columns:5fr 7fr;
+            gap:5rem; align-items:start;
+        }
+        .foto-container { position:relative; }
+        .foto-perfil {
+            width:100%; border-radius:var(--radio);
+            object-fit:cover; aspect-ratio:3/4;
+            position:relative; z-index:2; box-shadow:var(--s1);
+        }
+        .foto-decor {
+            position:absolute; top:-14px; left:-14px;
+            width:100%; height:100%;
+            border:2px solid var(--verde); border-radius:var(--radio);
+            z-index:1; opacity:0.5; transition:transform .6s ease;
+        }
+        .foto-container:hover .foto-decor { transform:translate(7px,7px); }
+
+        .sobre-mi-texto h2 {
+            font-size:clamp(1.9rem,3.5vw,2.9rem); color:var(--negro); margin-bottom:0.4rem;
+        }
+        .sobre-mi-texto h3 {
+            font-family:var(--sans); font-size:0.88rem; font-weight:500;
+            color:var(--lila-osc); letter-spacing:0.05em; margin-bottom:2.4rem;
+        }
+        .text-card {
+            background:var(--blanco); border:1px solid var(--borde);
+            padding:2rem 2.2rem; border-radius:var(--radio); margin-bottom:1.5rem;
+        }
+        .text-card p {
+            font-size:0.95rem; color:var(--suave); line-height:1.9; margin-bottom:1rem;
+        }
+        .text-card p:last-child { margin-bottom:0; }
+        .text-card strong { color:var(--texto); font-weight:600; }
+
+        /* Frase */
+        .frase-destacada { max-width:1100px; margin:5rem auto 4.5rem; text-align:center; }
+        .frase-destacada blockquote {
+            font-family:var(--serif);
+            font-size:clamp(1.2rem,2.2vw,1.85rem);
+            font-style:italic; color:var(--negro); font-weight:400;
+            line-height:1.55; position:relative;
+            padding:3rem 5rem;
+            background:var(--blanco); border-radius:var(--radio); border:1px solid var(--borde);
+        }
+        .frase-destacada blockquote::before {
+            content:'"'; font-family:var(--serif); font-size:8rem;
+            color:var(--lila); opacity:.16;
+            position:absolute; top:-1.5rem; left:2rem;
+            line-height:1; font-style:normal;
+        }
+
+        /* Contacto */
+        .contacto-wrapper { max-width:1100px; margin:0 auto; }
+        .contacto-titulo { text-align:center; margin-bottom:2.5rem; }
+        .contacto-titulo h3 { font-size:1.75rem; color:var(--negro); margin-bottom:.4rem; }
+        .contacto-titulo p { color:var(--suave); font-size:.9rem; font-weight:300; }
+        .contacto-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+        .contacto-item {
+            background:var(--blanco); border:1px solid var(--borde);
+            padding:2.2rem 2rem; border-radius:var(--radio); text-align:center;
+            transition:var(--ease); position:relative; overflow:hidden;
+        }
+        .contacto-item::before {
+            content:''; position:absolute; top:0; left:0;
+            width:100%; height:3px;
+            background:linear-gradient(90deg,var(--verde),var(--lila));
+            transform:scaleX(0); transform-origin:left; transition:transform .4s ease;
+        }
+        .contacto-item:hover { box-shadow:var(--s2); transform:translateY(-4px); }
+        .contacto-item:hover::before { transform:scaleX(1); }
+        .contacto-item-icon {
+            display:flex; align-items:center; justify-content:center;
+            width:48px; height:48px;
+            background:rgba(201,125,202,0.08); border:1px solid rgba(201,125,202,0.2);
+            border-radius:12px; margin:0 auto .9rem;
+            color:var(--lila-osc); transition:var(--ease);
+        }
+        .contacto-item:hover .contacto-item-icon { background:rgba(201,125,202,0.15); }
+        .contacto-item h4 {
+            font-family:var(--sans); font-size:.68rem; font-weight:600;
+            letter-spacing:.18em; text-transform:uppercase;
+            color:var(--suave); margin-bottom:.5rem;
+        }
+        .contacto-item p {
+            font-family:var(--serif); font-size:1rem; color:var(--negro); font-weight:600;
+        }
+
+        /* === RESEÑAS === */
+        .resenas {
+            padding:8rem 5%; background:var(--blanco); position:relative;
+        }
+        .resenas::before {
+            content:''; position:absolute; top:0; left:5%; width:90%; height:1px;
+            background:var(--borde);
+        }
+        .resenas-header { max-width:540px; margin:0 auto 5rem; text-align:center; }
+        .resenas-header h2 { font-size:clamp(2rem,4vw,2.8rem); color:var(--negro); margin-bottom:1rem; }
+        .resenas-header p { color:var(--suave); font-size:0.96rem; font-weight:300; }
+
+        .resenas-grid {
+            max-width:1100px; margin:0 auto;
+            display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;
+        }
+        .resena-card {
+            background:var(--fondo); border:1px solid var(--borde);
+            border-radius:var(--radio); padding:2.2rem 2rem;
+            display:flex; flex-direction:column; gap:1.4rem;
+            transition:var(--ease); position:relative;
+        }
+        .resena-card:hover {
+            background:var(--blanco); box-shadow:var(--s2);
+            transform:translateY(-5px); border-color:rgba(222,158,223,0.28);
+        }
+        .resena-stars {
+            display:flex; gap:3px;
+        }
+        .resena-stars span {
+            width:14px; height:14px; display:inline-block;
+        }
+        .resena-stars svg { color:var(--lila-osc); }
+        .resena-texto {
+            font-family:var(--serif); font-size:1rem; font-style:italic;
+            color:var(--texto); line-height:1.75; flex:1;
+            position:relative;
+        }
+        .resena-texto::before {
+            content:'"'; font-size:4rem; color:var(--lila);
+            opacity:.2; position:absolute; top:-1.2rem; left:-0.5rem;
+            font-family:var(--serif); line-height:1;
+        }
+        .resena-autor {
+            display:flex; align-items:center; gap:0.85rem;
+            padding-top:1rem; border-top:1px solid var(--borde);
+        }
+        .resena-avatar {
+            width:38px; height:38px; border-radius:50%; flex-shrink:0;
+            background:linear-gradient(135deg,var(--lila),var(--verde));
+            display:flex; align-items:center; justify-content:center;
+            font-family:var(--serif); font-size:0.95rem; font-weight:700;
+            color:var(--negro); opacity:0.85;
+        }
+        .resena-avatar.v2 { background:linear-gradient(135deg,var(--verde),var(--lila-osc)); }
+        .resena-avatar.v3 { background:linear-gradient(135deg,var(--lila-osc),var(--verde-osc)); }
+        .resena-nombre { font-size:0.88rem; font-weight:600; color:var(--negro); }
+        .resena-fecha  { font-size:0.72rem; color:var(--suave); font-weight:300; }
+
+        @media (max-width:768px) {
+            .resenas-grid { grid-template-columns:1fr; }
+        }
+        @media (max-width:1024px) {
+            .resenas-grid { grid-template-columns:1fr 1fr; }
+        }
+
+        /* === PAGINACIÓN EXPERIENCIAS === */
+        .resenas-paginacion {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-top: 3.5rem;
+        }
+        .pag-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid var(--borde); background: var(--blanco);
+            color: var(--texto); font-family: var(--sans); font-size: 0.82rem;
+            font-weight: 500; cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            transition: var(--ease);
+        }
+        .pag-btn:hover { background: var(--fondo); border-color: var(--lila-osc); color: var(--lila-osc); }
+        .pag-btn.active {
+            background: var(--negro); border-color: var(--negro);
+            color: var(--blanco);
+        }
+        .pag-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+        .pag-arrow {
+            width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid var(--borde); background: var(--blanco);
+            color: var(--texto); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--ease);
+        }
+        .pag-arrow:hover { background: var(--negro); border-color: var(--negro); color: var(--blanco); }
+        .pag-arrow:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+        /* === FOOTER === */
+        footer { background:var(--negro); padding:5rem 5% 3rem; }
+        .footer-top {
+            display:flex; justify-content:space-between; align-items:flex-start;
+            gap:3rem; padding-bottom:3rem;
+            border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:2.5rem;
+        }
+        .footer-brand img {
+            height:42px; filter:brightness(0) invert(1); opacity:.65; margin-bottom:1.1rem;
+        }
+        .footer-brand p { font-size:.84rem; color:rgba(255,255,255,0.36); max-width:270px; line-height:1.8; }
+        .footer-links h5 {
+            font-family:var(--sans); font-size:.68rem; font-weight:600;
+            letter-spacing:.16em; text-transform:uppercase;
+            color:rgba(255,255,255,0.32); margin-bottom:1.4rem;
+        }
+        .footer-links ul { list-style:none; display:flex; flex-direction:column; gap:.8rem; }
+        .footer-links a { font-size:.87rem; color:rgba(255,255,255,0.58); transition:color .3s; }
+        .footer-links a:hover { color:var(--verde); }
+        .footer-bottom {
+            display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+        }
+        .footer-bottom p { font-size:.78rem; color:rgba(255,255,255,0.26); }
+        .footer-badge {
+            display:inline-flex; align-items:center; gap:.5rem;
+            background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);
+            border-radius:50px; padding:.38rem 1rem;
+            font-size:.75rem; color:rgba(255,255,255,0.38);
+        }
+        .footer-badge::before {
+            content:''; width:6px; height:6px;
+            border-radius:50%; background:var(--verde); flex-shrink:0;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width:1024px) {
+            .hero-left { padding: 6rem 2rem 6rem 5%; }
+            .hero-right { padding: 4rem 3rem 4rem 2rem; }
+            .hero-photo-wrap { max-width: 240px; }
+            .bento-grid { grid-template-columns:1fr 1fr; gap:3rem; }
+        }
+        @media (max-width:768px) {
+            .hero { grid-template-columns:1fr; min-height:auto; }
+            .hero-left {
+                padding: 4rem 6% 3rem; text-align:center; align-items:center; order:1;
+            }
+            .hero-left p { max-width:100%; margin-left:auto; margin-right:auto; }
+            .hero-actions { justify-content:center; }
+            .hero-accent-line { display:none; }
+            .hero-separator { margin-left:auto; margin-right:auto; }
+            .hero-right { display:none; }
+            .hero-photo-wrap { max-width:200px; }
+            .bento-grid { grid-template-columns:1fr; }
+            .foto-container { max-width:65%; margin:0 auto; }
+            .frase-destacada blockquote { padding:2.5rem 1.8rem; font-size:1.15rem; }
+            .contacto-grid { grid-template-columns:1fr; }
+            .footer-top { flex-direction:column; align-items:center; text-align:center; }
+            .footer-brand p { max-width:100%; }
+            .nav-links {
+                display:none; flex-direction:column;
+                position:absolute; top:72px; left:0; width:100%;
+                background:rgba(255,255,255,0.98); backdrop-filter:blur(20px);
+                padding:1.5rem 5%; border-bottom:1px solid var(--borde); gap:0;
+            }
+            .nav-links li { border-bottom:1px solid var(--borde); }
+            .nav-links a { display:block; padding:1rem 0; font-size:.95rem; }
+            .nav-links a::after { display:none; }
+            .nav-links.active { display:flex; }
+            .nav-cta { display:inline-flex !important; margin:1rem 0 .5rem; }
+            .menu-toggle { display:block; }
+            .scroll-btn { display:none; }
+        }
+        @media (max-width:480px) {
+            .hero-left { padding:3rem 5% 2.5rem; }
+            .hero-left h1 { font-size:2.3rem; }
+            .card-servicio { flex:0 0 270px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav id="main-nav">
+        <div class="logo-nav">
+            <a href="#">
+                <img src="LOGO EN LILA LETRAS.png"  alt="Nutreando Logo" class="logo-lila">
+                <img src="LOGO EN VERDE LETRAS.png" alt="Nutreando Logo" class="logo-verde">
+            </a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#resenas">Experiencias</a></li>
+            <li><a href="#sobre-mi" class="nav-cta">Contactar</a></li>
+        </ul>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+
+        <div class="hero-left reveal">
+            <div class="hero-accent-line"></div>
+            <span class="hero-eyebrow-text">Nutrición Clínica &middot; Sin Dietas &middot; Sin Juicios</span>
+            <h1>Una nutrición<br><em>consciente</em><br>y libre de culpa</h1>
+            <div class="hero-separator"></div>
+            <p>Aprende a cuidarte desde el equilibrio, no desde la exigencia. Una buena relación con la comida es la base de un bienestar real y duradero.</p>
+            <div class="hero-actions">
+                <a href="#sobre-mi" class="btn-primary">
+                    Conóceme
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
+                </a>
+                <a href="#servicios" class="btn-ghost">Ver servicios</a>
+            </div>
+        </div>
+
+        <div class="hero-right reveal" style="transition-delay:.3s">
+            <div class="hero-photo-wrap">
+                <img src="imagen_profesional.jpg"
+                     alt="Carlota Cabrero — Nutricionista">
+                <div class="hero-photo-caption">
+                    <div class="name-block">
+                        <strong>Carlota Cabrero</strong>
+                        <span>Dietista-Nutricionista</span>
+                    </div>
+                    <div class="col-badge">
+                        N&ordm; Colegiada<br>CYL00430
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="servicios">
+        <div class="servicios-header reveal">
+            <span class="section-label">Áreas de trabajo</span>
+            <h2>¿Cómo puedo ayudarte?</h2>
+            <p>Desliza para explorar las áreas de acompañamiento</p>
+        </div>
+
+        <div class="scroll-container-wrapper reveal" style="transition-delay:.2s">
+            <button class="scroll-btn prev-btn" id="prev-btn" aria-label="Anterior">&#10094;</button>
+            <div class="horizontal-scroll" id="services-scroll">
+
+                <div class="card-servicio" data-modal="1">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">01</span>
+                    <p>Mejora tu relación con la comida y tu cuerpo</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="2">
+                    <div class="card-icon verde">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 22V12"/><path d="M12 12C9 12 4 8 4 4c3 0 6 1 8 8z"/><path d="M12 12c3 0 8-4 8-8-3 0-6 1-8 8z"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">02</span>
+                    <p>Creación de hábitos saludables y sostenibles</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="3">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">03</span>
+                    <p>Organización y planificación alimentaria en tu día a día</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="4">
+                    <div class="card-icon verde">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">04</span>
+                    <p>Abordaje de problemas digestivos (EII, SIBO, alergias, sintomatología)</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="5">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">05</span>
+                    <p>Salud hormonal de la mujer (embarazo, lactancia, SOP, menopausia)</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="6">
+                    <div class="card-icon verde">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">06</span>
+                    <p>Acompañamiento en Trastornos de la Conducta Alimentaria (TCA)</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+                <div class="card-servicio" data-modal="7">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/>
+                        </svg>
+                    </div>
+                    <span class="service-num">07</span>
+                    <p>Otras patologías clínicas (tiroides, diabetes, etc.)</p>
+                    <button class="btn-ver-mas">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                </div>
+
+            </div>
+            <button class="scroll-btn next-btn" id="next-btn" aria-label="Siguiente">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ Y CONTACTO -->
+    <section id="sobre-mi" class="sobre-mi-contacto">
+
+        <div class="bento-grid">
+            <div class="foto-container reveal">
+                <div class="foto-decor"></div>
+                <img src="imagen_profesional.jpg"
+                     alt="Carlota Cabrero — Nutricionista" class="foto-perfil">
+            </div>
+            <div class="sobre-mi-texto">
+                <div class="reveal">
+                    <span class="section-label">Sobre mí</span>
+                    <h2>Hola, soy Carlota</h2>
+                    <h3>Dietista-Nutricionista · Nº Col. CYL00430</h3>
+                </div>
+                <div class="text-card reveal" style="transition-delay:.1s">
+                    <p>Especializada en <strong>nutrición clínica, patologías digestivas y salud hormonal</strong> de la mujer.</p>
+                    <p>Trabajo con un enfoque en todas las tallas, poniendo el foco en la salud más allá del peso. Mi objetivo principal es ayudarte a mejorar tu relación con la comida y con tu propio cuerpo.</p>
+                    <p>Creo que comer bien no debería generar culpa, miedo ni ansiedad, sino tranquilidad y bienestar. Acompaño a cada persona desde la escucha, el respeto y sin juicios.</p>
+                </div>
+                <div class="text-card reveal" style="transition-delay:.2s">
+                    <p>Me centro en crear una relación más flexible, consciente y sostenible con la alimentación, lejos de las dietas estrictas y las soluciones rápidas.</p>
+                    <p>Mi objetivo es que aprendas a cuidarte desde el equilibrio, no desde la exigencia. Porque una buena relación con la comida es la base de un bienestar real y duradero.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="frase-destacada reveal" style="transition-delay:.3s">
+            <blockquote>
+                Tú eres el protagonista de tu vida y yo solo te acompañaré en el camino.
+            </blockquote>
+        </div>
+
+        <div class="contacto-wrapper reveal" style="transition-delay:.4s">
+            <div class="contacto-titulo">
+                <h3>Contacto</h3>
+                <p>Estoy disponible para resolver tus dudas</p>
+            </div>
+            <div class="contacto-grid">
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                    </div>
+                    <h4>Teléfono / WhatsApp</h4>
+                    <p>635 23 87 92</p>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <h4>Email</h4>
+                    <p style="font-size:.88rem">nutreandoconcarlota@gmail.com</p>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h4>Nº Colegiada</h4>
+                    <p>CYL00430</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    </section>
+
+    <!-- RESEÑAS -->
+    <section id="resenas" class="resenas">
+        <div class="resenas-header reveal">
+            <span class="section-label">Experiencias</span>
+            <h2>Lo que dicen mis pacientes</h2>
+            <p>Experiencias reales de personas que han transformado su relación con la comida</p>
+        </div>
+
+        <div class="resenas-grid" id="resenas-grid">
+            <!-- Las experiencias se cargan desde experiencias.json -->
+        </div>
+        <div class="resenas-paginacion" id="resenas-paginacion"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="LOGO LILA LETRAS DIBUJO.png" alt="Nutreando Logo">
+                <p>Consulta de nutrición online y presencial. Un espacio de escucha, sin juicios.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navegación</h5>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#sobre-mi">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Contacto</h5>
+                <ul>
+                    <li><a href="tel:635238792">635 23 87 92</a></li>
+                    <li><a href="mailto:nutreandoconcarlota@gmail.com">nutreandoconcarlota@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nutreando con Carlota. Todos los derechos reservados.</p>
+            <div class="footer-badge">Dietista-Nutricionista · CYL00430</div>
+        </div>
+    </footer>
+
+    <!-- MODAL SERVICIOS -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close" aria-label="Cerrar">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="modal-icon" id="modal-icon"></div>
+            <span class="modal-num" id="modal-num"></span>
+            <h3 id="modal-title"></h3>
+            <div class="modal-divider"></div>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks   = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // Animaciones reveal
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); } });
+        }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Scroll horizontal servicios
+        const scrollContainer = document.getElementById('services-scroll');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        if (scrollContainer) {
+            const amount = () => (scrollContainer.querySelector('.card-servicio')?.offsetWidth || 310) + 32;
+            prevBtn.addEventListener('click', () => scrollContainer.scrollBy({ left:-amount(), behavior:'smooth' }));
+            nextBtn.addEventListener('click', () => scrollContainer.scrollBy({ left: amount(), behavior:'smooth' }));
+        }
+
+        // === MODAL SERVICIOS ===
+        const serviciosData = {
+            1: {
+                titulo: 'Mejorar la relación con la comida y el cuerpo',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+                iconoClase: '',
+                texto: 'Te acompaño a reconectar con tu cuerpo desde el respeto y la escucha, dejando atrás la culpa, el control excesivo o las normas rígidas. Trabajaremos para que puedas comer con calma, confianza y libertad, construyendo una relación más amable contigo y con la comida.'
+            },
+            2: {
+                titulo: 'Crear hábitos saludables y sostenibles',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22V12"/><path d="M12 12C9 12 4 8 4 4c3 0 6 1 8 8z"/><path d="M12 12c3 0 8-4 8-8-3 0-6 1-8 8z"/></svg>`,
+                iconoClase: 'verde',
+                texto: 'Te ayudo a construir hábitos que encajen contigo y con tu estilo de vida, sin extremos ni exigencias imposibles. Buscaremos cambios realistas, progresivos y duraderos que te permitan cuidarte sin tener que llevarlo todo "bajo control". Aprenderemos a tener flexibilidad alimentaria y a poder decidir por nosotros mismos.'
+            },
+            3: {
+                titulo: 'Organización y planificación alimentaria',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+                iconoClase: '',
+                texto: 'Diseñaremos una forma de organizar tu alimentación que te dé tranquilidad y claridad en el día a día. Aprenderás a planificar sin agobios, optimizando tiempo y energía, y adaptándolo a tus necesidades reales.'
+            },
+            4: {
+                titulo: 'Abordaje de problemas digestivos',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+                iconoClase: 'verde',
+                texto: 'Analizamos tus síntomas digestivos desde un enfoque integral para entender qué está ocurriendo y cómo mejorar tu bienestar. Te acompaño con pautas personalizadas que te ayuden a sentirte mejor sin restricciones innecesarias.'
+            },
+            5: {
+                titulo: 'Salud hormonal de la mujer en sus etapas',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>`,
+                iconoClase: '',
+                texto: 'Te acompaño en las distintas etapas —ciclo menstrual, SOP, embarazo, menopausia— adaptando la alimentación y el estilo de vida a tus necesidades. El objetivo es ayudarte a entender qué le está ocurriendo a tu cuerpo y apoyarlo de forma consciente.'
+            },
+            6: {
+                titulo: 'TCA — Trastornos de la conducta alimentaria',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+                iconoClase: 'verde',
+                texto: 'Ofrezco un acompañamiento respetuoso y sin juicios en el proceso de recuperación, adaptado a tu ritmo. Trabajamos más allá de la comida, abordando la relación contigo misma, las emociones y el entorno.'
+            },
+            7: {
+                titulo: 'Otras patologías clínicas',
+                icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>`,
+                iconoClase: '',
+                texto: 'Te ayudo a gestionar tu alimentación en diferentes patologías —tiroides, diabetes y otras— desde un enfoque personalizado y basado en evidencia. Adaptamos las pautas a tu situación para mejorar tu salud sin perder calidad de vida.'
+            }
+        };
+
+        const overlay  = document.getElementById('modal-overlay');
+        const modalIcon = document.getElementById('modal-icon');
+        const modalNum  = document.getElementById('modal-num');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText  = document.getElementById('modal-text');
+
+        function openModal(id) {
+            const d = serviciosData[id];
+            if (!d) return;
+            modalIcon.innerHTML  = d.icono;
+            modalIcon.className  = 'modal-icon' + (d.iconoClase ? ' ' + d.iconoClase : '');
+            modalNum.textContent = '0' + id;
+            modalTitle.textContent = d.titulo;
+            modalText.textContent  = d.texto;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.btn-ver-mas').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const id = parseInt(btn.closest('.card-servicio').dataset.modal);
+                openModal(id);
+            });
+        });
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // === CARGAR EXPERIENCIAS DESDE JSON ===
+        const starSVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="var(--lila-osc)" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+        const POR_PAGINA = 6;
+
+        fetch('experiencias.json')
+            .then(r => r.json())
+            .then(data => {
+                const grid  = document.getElementById('resenas-grid');
+                const pagEl = document.getElementById('resenas-paginacion');
+                let paginaActual = 1;
+                const totalPaginas = Math.ceil(data.length / POR_PAGINA);
+
+                function renderPagina(pagina) {
+                    paginaActual = pagina;
+                    const inicio = (pagina - 1) * POR_PAGINA;
+                    const slice  = data.slice(inicio, inicio + POR_PAGINA);
+
+                    grid.innerHTML = '';
+                    slice.forEach((e, i) => {
+                        const delay = (i % 3) * 0.1;
+                        const stars = starSVG.repeat(Math.min(5, Math.max(1, e.estrellas)));
+                        const card = document.createElement('div');
+                        card.className = 'resena-card reveal';
+                        card.style.transitionDelay = delay + 's';
+                        card.innerHTML = `
+                            <div class="resena-stars">${stars}</div>
+                            <p class="resena-texto">${e.texto}</p>
+                            <div class="resena-autor">
+                                <div class="resena-avatar ${e.variante || ''}">${e.inicial}</div>
+                                <div>
+                                    <div class="resena-nombre">${e.nombre}</div>
+                                    <div class="resena-fecha">Paciente · ${e.fecha}</div>
+                                </div>
+                            </div>`;
+                        grid.appendChild(card);
+                        // forzar reflow para que la animación se dispare
+                        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('active')));
+                    });
+
+                    renderPaginacion();
+                }
+
+                function renderPaginacion() {
+                    if (totalPaginas <= 1) { pagEl.innerHTML = ''; return; }
+
+                    let html = `<button class="pag-arrow" id="pag-prev" aria-label="Anterior" ${paginaActual === 1 ? 'disabled' : ''}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>`;
+
+                    for (let p = 1; p <= totalPaginas; p++) {
+                        html += `<button class="pag-btn ${p === paginaActual ? 'active' : ''}" data-pag="${p}">${p}</button>`;
+                    }
+
+                    html += `<button class="pag-arrow" id="pag-next" aria-label="Siguiente" ${paginaActual === totalPaginas ? 'disabled' : ''}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>`;
+
+                    pagEl.innerHTML = html;
+
+                    pagEl.querySelector('#pag-prev')?.addEventListener('click', () => {
+                        if (paginaActual > 1) { renderPagina(paginaActual - 1); scrollToSection(); }
+                    });
+                    pagEl.querySelector('#pag-next')?.addEventListener('click', () => {
+                        if (paginaActual < totalPaginas) { renderPagina(paginaActual + 1); scrollToSection(); }
+                    });
+                    pagEl.querySelectorAll('.pag-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const p = parseInt(btn.dataset.pag);
+                            if (p !== paginaActual) { renderPagina(p); scrollToSection(); }
+                        });
+                    });
+                }
+
+                function scrollToSection() {
+                    document.getElementById('resenas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                renderPagina(1);
+            })
+            .catch(() => {
+                document.getElementById('resenas-grid').innerHTML =
+                    '<p style="color:var(--suave);text-align:center;grid-column:1/-1">No se pudieron cargar las experiencias.</p>';
+            });
+    </script>
+</body>
+</html>
+
