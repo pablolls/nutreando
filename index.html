@@ -522,11 +522,12 @@
         .resena-nombre { font-size:0.88rem; font-weight:600; color:var(--negro); }
         .resena-fecha  { font-size:0.72rem; color:var(--suave); font-weight:300; }
 
-        @media (max-width:768px) {
-            .resenas-grid { grid-template-columns:1fr; }
-        }
         @media (max-width:1024px) {
             .resenas-grid { grid-template-columns:1fr 1fr; }
+        }
+        @media (max-width:768px) {
+            .resenas-grid { grid-template-columns:1fr; max-width:480px; margin-left:auto; margin-right:auto; }
+            .resena-card { width:100%; }
         }
 
         /* === PAGINACIÓN EXPERIENCIAS === */
